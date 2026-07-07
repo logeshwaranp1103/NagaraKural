@@ -364,3 +364,21 @@ applyLang();
 applyTheme();
 renderViews();
 
+// Web Splash Screen Dismissal
+const splash = document.getElementById('web-splash');
+if (splash) {
+    const isElectron = navigator.userAgent.toLowerCase().includes('electron');
+    if (isElectron) {
+        // Remove instantly in desktop Electron app to avoid double loading screens
+        splash.remove();
+    } else {
+        // Keep visible for 2.5 seconds on web, then fade out and remove
+        setTimeout(() => {
+            splash.classList.add('fade-out');
+            setTimeout(() => {
+                splash.remove();
+            }, 500);
+        }, 2500);
+    }
+}
+

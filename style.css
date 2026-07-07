@@ -1154,3 +1154,60 @@ textarea.form-control {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
+
+/* ── Web Splash Screen Overlay ─────────────────────────────── */
+.web-splash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 1;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+.web-splash-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.web-splash-container {
+    text-align: center;
+    background: var(--surface);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    width: 85%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.web-splash-logo {
+    max-width: 280px;
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.web-splash-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--text);
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.web-splash-loading {
+    margin-top: 15px;
+    font-size: 16px;
+    color: var(--text-3);
+    font-weight: 500;
+}

@@ -1,0 +1,47 @@
+{
+  "name": "nagarakural",
+  "version": "1.0.0",
+  "description": "Nagarakural PWA to Windows Desktop App",
+  "main": "main.js",
+  "author": "Nagarakural",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "deploy": "gh-pages -d app"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^26.8.1",
+    "gh-pages": "^6.3.0"
+  },
+  "build": {
+    "appId": "com.nagarakural.app",
+    "productName": "Nagarakural",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "app/icon-192.png",
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Nagarakural"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "splash.html",
+      "splash.css",
+      "app/**/*"
+    ]
+  }
+}

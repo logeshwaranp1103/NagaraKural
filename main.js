@@ -22,6 +22,8 @@ function createSplash() {
 }
 
 function createMainWindow() {
+  const startTime = Date.now();
+
   // Restore window state
   const windowState = store.get('windowState', {
     width: 1280,
@@ -69,22 +71,25 @@ function createMainWindow() {
   });
 
   mainWindow.once('ready-to-show', () => {
-    // DEBUG: To keep splash screen open permanently, uncomment the line below:
-    // return;
+    const elapsed = Date.now() - startTime;
+    const minDelay = 2500; // 2.5 seconds minimum splash display time
+    const remainingDelay = Math.max(0, minDelay - elapsed);
 
-    if (splashWindow) {
-      splashWindow.on('closed', () => {
-        if (mainWindow) {
-          mainWindow.show();
-          mainWindow.focus();
-        }
-      });
-      splashWindow.close();
-      splashWindow = null;
-    } else {
-      mainWindow.show();
-      mainWindow.focus();
-    }
+    setTimeout(() => {
+      if (splashWindow) {
+        splashWindow.on('closed', () => {
+          if (mainWindow) {
+            mainWindow.show();
+            mainWindow.focus();
+          }
+        });
+        splashWindow.close();
+        splashWindow = null;
+      } else {
+        mainWindow.show();
+        mainWindow.focus();
+      }
+    }, remainingDelay);
   });
 }
 
